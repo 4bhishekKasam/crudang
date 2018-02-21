@@ -1,0 +1,62 @@
+ <div class="container-fluid">
+
+  <form #frm ="ngForm" (ngSubmit)="addItem(frm)" *ngIf="!toggleForm">
+    <h4>Add Item</h4><hr>
+    <div class="form-group">
+      <label for="">Name :
+       <input type="text" class="form-control" name="itemName" value="" ngModel> 
+      </label>
+    </div>
+    <div class="form-group">
+        <label for="">Quantity :
+       <input type="number" class="form-control" name="itemQuantity" value="" ngModel> 
+        </label>
+     </div>
+    <button type="submit" name="button" class="btn btn-success">Add Item</button>
+  </form>
+
+
+  <form #editfrm ="ngForm" (ngSubmit)="editItem(editfrm)" *ngIf="toggleForm">
+  <h4>Edit Item</h4><hr>
+  <div class="form-group">
+  <label for="">Name :
+  <input type="text" class="form-control" name="itemName" value="" 
+  [ngModel]="selectedItem.itemName"> 
+  </label>
+  </div>
+  <div class="form-group">
+  <label for="">Quantity :
+  <input type="number" class="form-control" name="itemQuantity" value="" 
+  [ngModel]="selectedItem.itemQuantity">
+   </label>
+  </div>
+   <button type="submit" name="button" class="btn btn-primary">Save</button>
+  </form>
+
+<hr>
+ 
+ <h2> Shopping List </h2>
+  <hr>
+ <div class='container'>
+ <div *ngFor="let item of shoppingItemList" class="" >
+     <div class="col-md-4">
+       {{item.itemName}}
+     </div>   
+     <div class="col-md-3">
+        {{item.itemQuantity}}
+      </div>
+     <div class="col-md-2">
+         <button type="button" name="button" class="btn btn-warning"
+         (click)="showEditForm(item)" [disabled]="toggleForm">Edit</button>
+       </div>
+       <div class="col-md-3">
+          <button type="button" name="button" class="btn btn-danger" 
+          (click)="deleteItem(item._id)">Delete</button>
+       <br><br>
+        </div>
+      
+</div>
+</div>
+</div>
+
+
